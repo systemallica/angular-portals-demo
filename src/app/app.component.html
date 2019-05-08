@@ -1,10 +1,15 @@
 <main>
+  <h1>Angular CDK Portal Demo</h1>
   <div class="outlet">
-    PortalOutletA
-    <ng-template [cdkPortalOutlet]="selectedPortalA"></ng-template>
+    <div class="a">
+      PortalOutletA
+      <ng-template [cdkPortalOutlet]="selectedPortalA"></ng-template>
+    </div>
     <hr />
-    PortalOutletB
-    <ng-template [cdkPortalOutlet]="selectedPortalB"></ng-template>
+    <div class="b">
+      PortalOutletB
+      <ng-template [cdkPortalOutlet]="selectedPortalB"></ng-template>
+    </div>
   </div>
 
   <div class="buttons">

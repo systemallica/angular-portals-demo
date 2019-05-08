@@ -10,14 +10,27 @@ main {
     flex: 1;
     align-items: center;
     flex-direction: column;
-    margin-top: 50px;
     width: 100%;
+    .a,
+    .b {
+      padding-top: 40px;
+      height: 80px;
+      width: 50%;
+      text-align: center;
+    }
+    .a {
+      border: 2px solid blue;
+    }
+    .b {
+      border: 2px solid orange;
+    }
     hr {
       width: 50%;
     }
   }
 
   .buttons {
+    margin-top: 10px;
     width: 100%;
     display: flex;
     align-items: flex-start;
