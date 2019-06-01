@@ -1,4 +1,9 @@
 import { Component, OnInit, OnDestroy } from "@angular/core";
+import { Subscription } from "rxjs";
+
+import { Portal } from "../../state/portal.model";
+import { PortalQuery } from "../../state/portal.query";
+import { PortalService } from "../../state/portal.service";
 
 @Component({
   selector: "app-portal",
@@ -6,13 +11,29 @@ import { Component, OnInit, OnDestroy } from "@angular/core";
   styleUrls: ["./portal.component.scss"],
 })
 export class PortalComponent implements OnDestroy, OnInit {
-  constructor() {}
+  public text: string;
+
+  public subscription: Subscription;
+
+  constructor(
+    private portalService: PortalService,
+    private portalQuery: PortalQuery
+  ) {}
 
   ngOnInit() {
-    console.error("on init");
+    // Restore Portal state
+    this.subscription = this.portalQuery
+      .selectEntity(1)
+      .subscribe((value: Portal) => {
+        if (value) {
+          this.text = value.input;
+        }
+      });
   }
 
   ngOnDestroy() {
-    console.error("on destroy");
+    this.subscription.unsubscribe();
+    // Save Portal state
+    this.portalService.savePortal(1, { input: this.text });
   }
 }
